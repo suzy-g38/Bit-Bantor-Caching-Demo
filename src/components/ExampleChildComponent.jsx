@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react';
+import {globalCache} from './GlobalCacheComponent';
+
 export default function ChildComponent({ cacheKey }) {
     const [data, setData] = useState(globalCache.get(cacheKey));
   

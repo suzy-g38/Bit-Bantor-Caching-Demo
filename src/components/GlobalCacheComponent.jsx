@@ -6,15 +6,17 @@ class GlobalCacheService {
   }
 
   get(key) {
-    // console.log(`Global get for key: ${key}`); // Uncomment for get logs
+    console.log(`Global get for key: ${key}`); // Uncomment for get logs
     if (typeof key === 'object') {
+      console.log(`Weak cache hit for key: ${key}`); // Uncomment for weak cache logs
       return this.weakCache.get(key);
     }
+    console.log(`cache hit for key: ${key}`); 
     return this.cache.get(key);
   }
 
   set(key, value) {
-    // console.log(`Global set for key: ${key}, value: ${JSON.stringify(value)}`); // Uncomment for set logs
+    console.log(`Global set for key: ${key}, value: ${JSON.stringify(value)}`); // Uncomment for set logs
     if (typeof key === 'object') {
       this.weakCache.set(key, value);
     } else {
@@ -23,7 +25,7 @@ class GlobalCacheService {
   }
 
   clear(key) {
-    // console.log(`Global clear for key: ${key}`); // Uncomment for clear logs
+    console.log(`Global clear for key: ${key}`); // Uncomment for clear logs
     if (typeof key === 'object') {
       this.weakCache.delete(key);
     } else {

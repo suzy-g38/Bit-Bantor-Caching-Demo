@@ -31,28 +31,28 @@ function BasicCacheComponent() {
       return promise;
     };
   };
-  const cachedFetch = createApiCache();
+  // const cachedFetch = createApiCache();
 
   // Expensive computation - without memo, this runs every render
-  //const filteredData = data.filter(item => item % 2 === 0); // Uncomment for "before" (slow)
-  const filteredData = useMemo(() => {
-    console.log('Running expensive filter...'); // Uncomment to show re-computes
-    return data.filter(item => item % 2 === 0);
-  }, [data]);
+  const filteredData = data.filter(item => item % 2 === 0); // Uncomment for "before" (slow)
+  // const filteredData = useMemo(() => {
+  //   console.log('Running expensive filter...'); // Uncomment to show re-computes
+  //   return data.filter(item => item % 2 === 0);
+  // }, [data]);
 
   // Callback function - without useCallback, recreates every time
-  //const handleFetch = async () => { // Uncomment for "before"
-const handleFetch = useCallback(async () => {
-    console.log('Fetching data...'); // Uncomment to show function recreations
-    const result = await cachedFetch('todos/1');
-    console.log('Fetched:', result); // Always log result for visibility
-  }, []);
-//}
+  const handleFetch = async () => { // Uncomment for "before"
+// const handleFetch = useCallback(async () => {
+//     console.log('Fetching data...'); // Uncomment to show function recreations
+//     const result = await cachedFetch('todos/1');
+//     console.log('Fetched:', result); // Always log result for visibility
+//   }, []);
+}
 
   useEffect(() => {
     // Simulate multiple calls to show deduplication
     handleFetch();
-    //handleFetch(); // Second call should hit in-flight or cache
+    handleFetch(); // Second call should hit in-flight or cache
   }, [handleFetch]);
 
   return (

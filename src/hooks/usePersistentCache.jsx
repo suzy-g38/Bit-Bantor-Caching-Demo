@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 export function usePersistentCache(key, initialValue) {
   const [value, setValue] = useState(() => {
